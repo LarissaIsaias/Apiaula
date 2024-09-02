@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StarSale</title>
+    <script src="index.js" defer></script>
+    <link rel = 'stylesheet' href="style.css">
+</head>
+<body>
+    <header>
+        <div id="hcont">
+            <button onclick="Perfil()" id="pf">Perfil</button>
+            <h1>StarSale</h1>
+            <a href="carrinho.html" onclick="calculaCesta" class="car" alt="carrinho de compras">Compras<img id="carrinho" src="Imagens/carrinho.png"></a>
+        </div>
+    </header>
+    <main class="container">
+        <section class="products-container">
+            <h2>Escolha as suas estrelas e clique em comprar</h2>
+            <article class="card">
+                <div class="product-image" id="img-1"><img src="Imagens/img-1.png"></div>
+                <h3>Gigante Vermelha</h3>
+                <p input type="number" value="1" min="1" max="10" id="qtd-1">Qtd: </p>
+                <p>R$ <span id="Gv" class="bold">300,00</span></p>
+                <a class="btn" onclick="compraGv()" href="" target="_blank">comprar</a>
+            </article>
+            <article class="card">
+                <div class="product-image" id="img-2"><img src="Imagens/img-2.png"></div>
+                <h3>Anã Branca</h3>
+                <p input type="number" value="1" min="1" max="10" id="qtd-1">Qtd: </p>
+                <p>R$ <span id="Ab" class="bold">350,00</span></p>
+                <a class="btn" onclick="compraAb()" href="" target="_blank">comprar</a>
+            </article>
+            <article class="card">
+                <div class="product-image" id="img-3"><img src="Imagens/img-3.png"></div>
+                <h3>Anã Marrom</h3>
+                <p input type="number" value="1" min="1" max="10" id="qtd-1">Qtd: </p>
+                <p>R$ <span id="Am" class="bold">99,99</span></p>
+                <a class="btn" onclick="compraAm()" href="" target="_blank">comprar</a>
+            </article>
+            <article class="card">
+                <div class="product-image" id="img-4"><img src="Imagens/img-4.png"></div>
+
+                <h3>Supergigantes Azuis</h3>
+                <p input type="number" value="1" min="1" max="10" id="qtd-1">Qtd: </p>
+                <p>R$ <span id="Sa" class="bold">229,99</span></p>
+                <a class="btn" onclick="compraSa()" href="" target="_blank">comprar</a>
+            </article>
+            <article class="card">
+                <div class="product-image" id="img-5"><img src="Imagens/img-5.png"></div>
+                <h3>Estrelas de Nêutrons</h3>
+                <p input type="number" value="1" min="1" max="10" id="qtd-1">Qtd: </p>
+                <p>R$ <span id="En" class="bold">319,95</span></p>
+                <a class="btn" onclick="compraEn()" href="" target="_blank">comprar</a>
+            </article>
+            <article class="card">
+                <div class="product-image" id="img-6"><img src="Imagens/img-6.png"></div>
+                <h3>Buracos Negros</h3>
+                <p input type="number" value="1" min="1" max="10" id="qtd-1">Qtd: </p>
+                <p>R$ <span id="Bn" class="bold">319,95</span></p>
+                <a class="btn" onclick="compraBn()" href="" target="_blank">comprar</a>
+            </article>
+        </section>
+    </main>
+    <footer id="rodape">
+        <h2>informações sobre o site</h2>
+        <p>Contatos - Instagram: @star_sale Whatsapp: +55 48 4002-8922</p>
+        <p><span class="bold">StarSale</span> &copy; 2024</p>
+    </footer>
+</body>
+</html>

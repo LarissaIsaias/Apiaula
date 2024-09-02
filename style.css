@@ -1,0 +1,151 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Helvetica;
+    color:white
+}
+
+
+#hcont{
+    display: flex;
+    flex-direction: row;
+}
+
+header{
+    height: 200px;
+    background-color: #0f0516;
+    color: aliceblue;
+    padding: 5px;
+    text-align: center;
+    border-bottom: 3px solid #470a73;
+}
+h1{
+    color: white;
+    text-shadow: 3px 3px black;
+    padding-top: 15px;
+    padding-left: 550px;
+    font-size: 40px;
+}
+
+
+.car{
+    display: block;
+    width: 5%;
+    color: #ffffff;
+    text-transform: lowercase;
+    text-decoration: none;
+    background-color: transparent;
+    margin-left: 600px;
+    margin-top:50px;
+}
+.car img{
+    width: 100px;
+    height: 100px;
+}
+
+
+#pf{
+    display: block;
+    height: 50px;
+    width: 150px;
+    padding: 0px;
+    border: none;
+    font-size: 15px;
+    margin-left: 0%;
+    margin-top: 80px;
+    text-transform: uppercase;
+    text-decoration: none;
+    background-color: #470a73;
+    color: white;
+    border-radius: 5px;
+    transition: 0.5s;
+}
+#pf:hover{
+    background-color: black;
+}
+
+
+.container{
+    background-color: black;
+    min-height: 60vh;
+    padding: 60px;
+}
+
+
+.products-container{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+
+.product-image {
+    height: 300px;
+    width: 100%;
+    margin-bottom: 10px;
+    background-position: center;
+    background-size: cover;
+    border: 3px solid #470a73;
+    border-radius: 20px;
+    background-attachment: fixed;
+}
+.product-image img{
+    width: 100%;
+    border-radius: 20px;
+    height: 100%;
+}
+
+.card{
+    width: 31%;
+    display: inline-block;
+    margin: 1% 1%;
+    padding: 15px;
+}
+
+
+
+h3{
+    margin-bottom: 10px;
+    color: white;
+    border-left: 5px solid #470a73;
+    padding-left: 7px;
+    font-size: 24px;
+}
+
+
+.card p{
+    margin-bottom: 10px;
+}
+
+
+.bold{
+    font-weight: bold;
+}
+
+
+.btn{
+    display: block;
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    background-color: #470a73;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    transition: 0.5s;
+}
+
+
+.btn:hover{
+    background-color: black;
+}
+
+
+#rodape{
+    background-color: #470a73;
+    color: white;
+    border-top: 3px solid #470a73;
+    text-align: center;
+    padding: 20px;
+}

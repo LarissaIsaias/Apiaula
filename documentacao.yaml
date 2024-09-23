@@ -1,0 +1,348 @@
+openapi: 3.0.3
+
+info:
+  title: API curso Programador Back-end
+  description: esta api foi criada para validar os conhecimentos relacionados a back-end, na disciplina de codificação para back-end. Foram criados uma CRUD para uma tabela de clientes, outra CRUD para uma tabela de produtos, rotas para autenticação dos clientes, balidação de cookies JWT, entre outras bibliotecas com bcrypt para criptografia de senha, jest e supertest para testes automatizados, dotenv para salvar variáveis de ambiente e etc.
+  version: 1.0.0
+
+Servers:
+  url: http://localhost:5000
+  description: Servidor local de testes.
+
+
+paths:
+  /auth:
+    post:
+      summary: Faz o login do cliente e retorna um token JWT
+      description: realiza o login de um usuário com email e senha.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                senha:
+                  type: string
+      responses:
+        '200':
+          description: Login bem-sucedido e token retornado.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '404':
+          description: Usuário não encontrado.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+        '400':
+          description: Email ou senha não enviados.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  erro:
+                    type: string
+        '401':
+          description: Senha inválida.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+    post:
+      summary: Faz o logout do cliente
+      description: realiza o logout do usuário, invalidando o token.
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: Logout bem-sucedido.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  mensagem:
+                    type: string
+
+  /clientes:
+    get:
+      summary: Retorna a lista de clientes.
+      description: Lista todos os clientes disponíveis.
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: Um array em JSON
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    nome:
+                      type: string
+                    email:
+                      type: string
+                    senha:
+                      type: string
+    get:
+      summary: Retorna 1 cliente específico.
+      description: retorna os dados de um cliente específico.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID do cliente que você deseja obter.
+          schema:
+            type: string
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: Cliente encontrado.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  nome:
+                    type: string
+                  email:
+                    type: string
+        '404': 
+          description: not found.
+    post:
+      summary: Cria um cliente;
+      description: Adiciona um novo cliente à lista.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                email:
+                  type: string
+                  format: email
+                senha:
+                  type: string
+      responses: 
+        '406': 
+          description: Nome, email e senha devem ser informados.
+        '500': 
+          description: Erro no servidor.
+        '204': 
+          description: Sucesso.
+    put:
+      summary: Atualiza os dados de um cliente.
+      description: Atualiza os detalhes de um cliente existente.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID do cliente que você deseja atualizar.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                email:
+                  type: string
+                  format: email
+                senha:
+                  type: string
+      security:
+        - cookieAuth: []
+      responses: 
+        '404': 
+          description: not found
+        '500': 
+          description: Erro no servidor.
+        '204': 
+          description: Sucesso
+    delete:
+      summary: Deleta um cliente.
+      description: Remove um cliente da lista.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID do cliente que você deseja deletar.
+          schema:
+            type: string
+      security:
+        - cookieAuth: []
+      responses:
+        '500': 
+          description: Erro no servidor.
+        '204': 
+          description: Sucesso
+        '404':
+          description: Cliente não encontrado.
+
+  /produtos:
+    get:
+      summary: Retorna a lista de produtos
+      description: Lista todos os produtos disponíveis.
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: um array em Json
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    nome:
+                      type: string
+                    preco:
+                      type: number
+    get:
+      summary: Retorna 1 produto específico.
+      description: Retorna os detalhes de um produto específico pelo ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID do produto que você deseja obter.
+          schema:
+            type: string
+      security:
+        - cookieAuth: []
+      responses:
+        '200':
+          description: Produto encontrado.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  nome:
+                    type: string
+                  preco:
+                    type: number
+        '404':
+          description: Produto não encontrado.
+    post:
+      summary: Cria um produto.
+      description: Adiciona um novo produto à lista.
+      security:
+        - cookieAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                preco:
+                  type: number
+      responses: 
+        '406': 
+          description: Nome e preço devem ser informados
+        '500': 
+          description: Erro no servidor.
+        '204': 
+          description: Sucesso
+    put:
+      summary: Atualiza os dados de um produto.
+      description: Atualiza os detalhes de um produto existente.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID do produto que você deseja atualizar.
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                preco:
+                  type: number
+      security:
+        - cookieAuth: []
+      responses: 
+        '404': 
+          description: not found
+        '500': 
+          description: Erro no servidor.
+        '204': 
+          description: Sucesso
+    delete:
+      summary: Deleta um produto.
+      descriptiom: Remove um produto da lista.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID do produto que você deseja deletar.
+          schema:
+            type: string
+      security:
+        - cookieAuth: []
+      responses:
+        '500':
+          description: Erro no servidor.
+        '204':
+          description: Produto deletado com sucesso.
+        '404':
+          description: Produto não encontrado.
+
+components:
+  securitySchemes:
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: TokenAulaBE
+
+  schemas:
+    Error:
+      type: object
+      properties:
+        mensagem:
+          type: string
+          example: "não autorizado"
